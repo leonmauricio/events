@@ -18,6 +18,7 @@ class CreateEventsTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->string('name');
             $table->string('desc');
+            $table->integer('capacity');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->timestamps();

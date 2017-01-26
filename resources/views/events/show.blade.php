@@ -24,33 +24,39 @@
                 </div>
                 <hr>
                 @if (Auth::guest())
-                    <div class="panel-heading">
+                    @if ($hasCapacity)
+                        <div class="panel-heading">
+                            <h2>
+                                Go to this event!
+                            </h2>
+                            @if (session('alert'))
+                                <div class="alert alert-danger">
+                                    {{ session('alert') }}
+                                </div>
+                            @endif
+                        </div>
+                        <div class="panel-body">
+                            <form method="POST" action="/guests">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="event_id" value="{{ $event->id }}">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" name="name" placeholder="Name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" name="email" placeholder="Email"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    @else
                         <h2>
-                            Go to this event!
+                            No more room for this event!
                         </h2>
-                        @if (session('alert'))
-                            <div class="alert alert-danger">
-                                {{ session('alert') }}
-                            </div>
-                        @endif
-                    </div>
-                    <div class="panel-body">
-                        <form method="POST" action="/guests">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="event_id" value="{{ $event->id }}">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" name="name" placeholder="Name">
-                            </div>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" class="form-control" name="email" placeholder="Email"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
-                    </div>
+                    @endif
                 @else
                     <ul>
                         @foreach ($event->guests as $guest)

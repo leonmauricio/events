@@ -31,7 +31,7 @@ class EventController extends Controller
         $inputs['start_date'] .= ':00';
         $inputs['end_date'] .= ':00';
 
-        if (strtotime($inputs['start_date']) < $inputs['end_date']){
+        if (strtotime($inputs['start_date']) > $inputs['end_date']){
             $event = new Event($inputs);
             $event->user_id = Auth::id();
 
@@ -46,9 +46,11 @@ class EventController extends Controller
 
     public function show($id)
     {
-        $event = Event::findOrFail($id);
+        $event = Event::with('guests', 'user')->findOrFail($id);
         $event->load('user');
-        return view('events.show', compact('event'));
+
+        $hasCapacity = $event->guests->count() < $event->capacity;
+        return view('events.show', compact('event', 'hasCapacity'));
     }
 
     public function edit($id)
@@ -62,7 +64,14 @@ class EventController extends Controller
         $inputs = $request->all();
         $inputs['start_date'] .= ':00';
         $inputs['end_date'] .= ':00';
-        $event->update($inputs);
+
+        if (strtotime($inputs['start_date']) > $inputs['end_date']){
+            $event->update($inputs);
+        }
+        else{
+            return back()->with('alert', 'End date has to be after the start date');
+        }
+
         return view('events.show', ['event' => Event::findOrFail($id)]);
     }
 

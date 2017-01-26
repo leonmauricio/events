@@ -19,6 +19,12 @@
                             <label>Event Description</label>
                             <textarea class="form-control" name="desc">{{ $event->desc }}</textarea>
                         </div>
+
+                        <div class="form-group">
+                            <label>Capacity</label>
+                            <input type="number" class="form-control" name="capacity" value="{{$event->capacity }}">
+                        </div>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">

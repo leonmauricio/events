@@ -18,6 +18,10 @@
                             <label>Event Description</label>
                             <textarea class="form-control" name="desc" placeholder="Event name"></textarea>
                         </div>
+                        <div class="form-group">
+                            <label>Capacity</label>
+                            <input type="number" class="form-control" name="capacity" placeholder="Number of available invitations">
+                        </div>
 
                         @if (session('alert'))
                             <div class="alert alert-danger">
