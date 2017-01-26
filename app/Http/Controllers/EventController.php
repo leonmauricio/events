@@ -10,12 +10,23 @@ class EventController extends Controller
 {
     public function __construct()
     {
-         $this->middleware('auth')->except(['index','show']);
+         $this->middleware('auth')->except(['show']);
     }
     
     public function index()
     {
-        $events = Event::all();
+        if (!Auth::guest()){
+            $events = Auth::user()->event;
+            foreach ($events as $event) {
+                $event->guestQuantity = $event->guests->count();
+                if ($event->guestQuantity < $event->capacity) {
+                    $event->soldOut = false;
+                }
+                else {
+                    $event->soldOut = true;
+                }
+            }
+        }
         return view('events.index', compact('events'));
     }
 
@@ -55,20 +66,26 @@ class EventController extends Controller
 
     public function edit($id)
     {
-        return view('events.edit', ['event' => Event::findOrFail($id)]);
+        $event = Event::with('user')->find($id);
+        if (Auth::user()->id !== $event->user_id){
+            return redirect('/events');
+        }
+        return view('events.edit', compact('event'));
     }
 
     public function update(Request $request, $id)
     {
-        $event = Event::findOrFail($id);
+        $event = Event::with('user')->find($id);
+        if (Auth::user()->id !== $event->user_id){
+            return redirect('/events');
+        }
         $inputs = $request->all();
         $inputs['start_date'] .= ':00';
         $inputs['end_date'] .= ':00';
 
         if (strtotime($inputs['start_date']) > $inputs['end_date']){
             $event->update($inputs);
-        }
-        else{
+        } else {
             return back()->with('alert', 'End date has to be after the start date');
         }
 

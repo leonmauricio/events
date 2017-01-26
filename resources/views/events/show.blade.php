@@ -9,6 +9,14 @@
                     <h2>
                         {{ $event->name }}
                     </h2>
+                    @if (Auth::user()->id === $event->user_id)
+                        <div class="delete pull-right">
+                            {{ Form::open(array('url' => 'events/' . $event->id, 'class' => '')) }}
+                                {{ Form::hidden('_method', 'DELETE') }}
+                                {{ Form::submit('Delete Event', array('class' => 'btn btn-danger')) }}
+                            {{ Form::close() }}
+                        </div>
+                    @endif
                     <h4>
                         by {{ $event->user->name }}
                     </h4>
@@ -22,8 +30,8 @@
                             {{ $event->start_date }}-{{ $event->end_date }}
                         </p>
                 </div>
-                <hr>
-                @if (Auth::guest())
+                @if (Auth::guest() OR Auth::user()->id !== $event->user_id)
+                    <hr>
                     @if ($hasCapacity)
                         <div class="panel-heading">
                             <h2>
@@ -45,7 +53,36 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="email" class="form-control" name="email" placeholder="Email"></textarea>
+                                    <input type="email" class="form-control" name="email" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone Number</label>
+                                    <input type="tel" class="form-control" name="phone" placeholder="Phone Number">
+                                </div>
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <input type="text" class="form-control" name="address" placeholder="Address">
+                                </div>
+                                <div class="form-group">
+                                    <label>City</label>
+                                    <input type="text" class="form-control" name="city" placeholder="City">
+                                </div>
+                                <div class="form-group">
+                                    <label>Country</label>
+                                    <input type="text" class="form-control" name="country" placeholder="Country">
+                                </div>
+                                <div class="form-group">
+                                    <label>Identification Type and Number</label>
+                                    <input type="text" class="form-control" name="identification" placeholder="Identification Type and Number">
+                                </div>
+                                <div class="form-group">
+                                    <label>Date of Birth</label>
+                                    <div class='input-group date datetimepicker'>
+                                        <input type='text' name="birth" class="form-control"/>
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -53,7 +90,7 @@
                             </form>
                         </div>
                     @else
-                        <h2>
+                        <h2 class="text-center">
                             No more room for this event!
                         </h2>
                     @endif

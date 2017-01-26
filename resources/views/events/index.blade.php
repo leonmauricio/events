@@ -24,13 +24,18 @@
                                             <a href="/events/{{ $event->id }}" class="pull-left">
                                                 {{ $event->name }}
                                             </a>
+                                            @if ($event->soldOut)
+                                                <p class="pull-right">
+                                                    SOLD OUT
+                                                </p>
+                                            @else
+                                                <p class="pull-right">
+                                                    {{ $event->guestQuantity }} / {{ $event->capacity }} invitations left
+                                                </p>
+                                            @endif
                                         </div>
                                         <div class="col-md-6">
                                             @if (!Auth::guest())
-                                                {{ Form::open(array('url' => 'events/' . $event->id, 'class' => 'pull-right')) }}
-                                                    {{ Form::hidden('_method', 'DELETE') }}
-                                                    {{ Form::submit('Delete Event', array('class' => 'btn btn-danger')) }}
-                                                {{ Form::close() }}
                                                 <a  href="/events/{{ $event->id }}/edit" class="btn btn-warning pull-right">
                                                     Edit Event
                                                 </a>
