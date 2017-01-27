@@ -21,6 +21,7 @@ class CreateEventsTable extends Migration
             $table->integer('capacity');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
+            $table->json('fields');
             $table->timestamps();
         });
     }

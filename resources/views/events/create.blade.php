@@ -57,6 +57,41 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label>
+                                Optional Requirements
+                            </label>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="fields[]" type="checkbox" value="phone">Phone Number
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="fields[]" type="checkbox" value="address">Address
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="fields[]" type="checkbox" value="city">City
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="fields[]" type="checkbox" value="country">Country
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="fields[]" type="checkbox" value="identification">Identification Type and Number
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="fields[]" type="checkbox" value="birth">Birthday
+                                </label>
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Submit</button>

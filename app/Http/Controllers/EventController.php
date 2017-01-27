@@ -42,6 +42,7 @@ class EventController extends Controller
         $inputs['start_date'] .= ':00';
         $inputs['end_date'] .= ':00';
 
+
         if (strtotime($inputs['start_date']) > $inputs['end_date']){
             $event = new Event($inputs);
             $event->user_id = Auth::id();
