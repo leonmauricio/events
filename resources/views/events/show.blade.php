@@ -6,6 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
+                    <img src="/{{ str_replace('public','storage',$event->cover) }}">
                     <h2>
                         {{ $event->name }}
                     </h2>

@@ -41,10 +41,11 @@ class EventController extends Controller
         $inputs = $request->all();
         $inputs['start_date'] .= ':00';
         $inputs['end_date'] .= ':00';
-
+        $url = $request->cover->store('public');
 
         if (strtotime($inputs['start_date']) > $inputs['end_date']){
             $event = new Event($inputs);
+            $event->cover = $url;
             $event->user_id = Auth::id();
 
             $event->save();
