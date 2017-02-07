@@ -8,7 +8,7 @@
                 <div class="panel-heading">Events</div>
 
                 <div class="panel-body">
-                    <form method="POST" action="/events">
+                    <form method="POST" action="/events" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label>Event name</label>
@@ -28,6 +28,10 @@
                         </div>
                         <div class="radio-inline">
                             <label><input type="radio" name="public" value="0">Private Event</label>
+                        </div>
+                        <div class="form-group">
+                            <label>Event Cover</label>
+                            <input type="file" class="form-control" name="cover">
                         </div>
 
                         @if (session('alert'))
