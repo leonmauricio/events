@@ -10,17 +10,28 @@
                 <div class="panel-body">
                     <form method="POST" action="/events" enctype="multipart/form-data">
                         {{ csrf_field() }}
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        
                         <div class="form-group">
                             <label>Event name</label>
-                            <input type="text" class="form-control" name="name" placeholder="Event name">
+                            <input type="text" class="form-control" name="name" placeholder="Event name" value="{{ old('name') }}">
                         </div>
                         <div class="form-group">
                             <label>Event Description</label>
-                            <textarea class="form-control" name="desc" placeholder="Event name"></textarea>
+                            <textarea class="form-control" name="desc" placeholder="Event name"> {{ old('desc') }} </textarea>
                         </div>
                         <div class="form-group">
                             <label>Capacity</label>
-                            <input type="number" class="form-control" name="capacity" placeholder="Number of available invitations">
+                            <input type="number" class="form-control" name="capacity" placeholder="Number of available invitations" value="{{ old('capacity') }}">
                         </div>
 
                         <div class="radio-inline">
@@ -47,7 +58,7 @@
                                         From
                                     </label>
                                     <div class='input-group date datetimepicker'>
-                                        <input type='text' name="start_date" class="form-control"/>
+                                        <input type='text' name="start_date" class="form-control" value="{{ old('start_date') }}">
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -60,7 +71,7 @@
                                         until
                                     </label>
                                     <div class='input-group date datetimepicker'>
-                                        <input type='text' name="end_date" class="form-control"/>
+                                        <input type='text' name="end_date" class="form-control" value="{{ old('end_date') }}">
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>

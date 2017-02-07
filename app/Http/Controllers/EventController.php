@@ -37,6 +37,9 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'cover' => 'between:0,1024|image'
+        ]);
         $inputs = $request->all();
         $inputs['start_date'] .= ':00';
         $inputs['end_date'] .= ':00';
