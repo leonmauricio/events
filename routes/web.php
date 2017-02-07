@@ -29,4 +29,7 @@ Route::get('/thanks', 'ThanksController@index');
 
 Route::get('/unsubscribe/{invitation_id}', 'UnsubscribeController@update');
 Route::get('/subscribe/{invitation_id}', 'SubscribeController@update');
+
 Route::get('/export/{id}', 'ExportController@create');
+
+Route::get('/public/events', 'PublicEventsController@index');

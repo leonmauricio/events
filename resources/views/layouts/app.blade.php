@@ -43,9 +43,6 @@
                 </div>
                 <ul class="nav navbar-nav">
                     &nbsp;
-                    <li>
-                        <a href="/events">Events</a>
-                    </li>
                 </ul>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -53,17 +50,33 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="public/events">DISCOVER EVENTS</a>
+                        </li>
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
-                        @else
+
+                            <li><a href="{{ url('/login') }}">LOGIN</a></li>
+                            <li><a href="{{ url('/register') }}">REGISTER</a></li>
+                            <li>
+                                <a href="/events/create">CREATE AN EVENT</a>
+                            </li>
+                        @endif
+                        @if (!Auth::guest())
+                            <li>
+                                <a href="/events/create">CREATE AN EVENT</a>
+                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ strtoupper (Auth::user()->name) }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="/events">
+                                            Your Events
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
@@ -78,6 +91,7 @@
                                 </ul>
                             </li>
                         @endif
+
                     </ul>
                 </div>
             </div>

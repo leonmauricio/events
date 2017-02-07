@@ -23,6 +23,13 @@
                             <input type="number" class="form-control" name="capacity" placeholder="Number of available invitations">
                         </div>
 
+                        <div class="radio-inline">
+                            <label><input type="radio" name="public" value="1">Public Event</label>
+                        </div>
+                        <div class="radio-inline">
+                            <label><input type="radio" name="public" value="0">Private Event</label>
+                        </div>
+
                         @if (session('alert'))
                             <div class="alert alert-danger">
                                 {{ session('alert') }}
