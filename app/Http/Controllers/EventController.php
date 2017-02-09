@@ -47,9 +47,6 @@ class EventController extends Controller
 
         $inputs = $request->all();
 
-        var_dump($inputs);
-        exit;
-
         $inputs['start_date'] .= ':00';
         $inputs['end_date'] .= ':00';
 
