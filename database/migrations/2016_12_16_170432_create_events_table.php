@@ -18,12 +18,12 @@ class CreateEventsTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->string('name');
             $table->string('desc');
-            $table->integer('capacity');
-            $table->boolean('public');
+            $table->integer('capacity')->default(0);
+            $table->boolean('public')->default(0);
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->text('fields');
-            $table->string('cover');
+            $table->text('fields')->nullable();
+            $table->string('cover')->nullable();
             $table->timestamps();
         });
     }

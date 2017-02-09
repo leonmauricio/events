@@ -38,25 +38,30 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'cover' => 'between:0,1024|image'
+            'cover' => 'required|between:0,1024|image',
+            'name' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date'
         ]);
+
         $inputs = $request->all();
         $inputs['start_date'] .= ':00';
         $inputs['end_date'] .= ':00';
+
         $url = $request->cover->store('public');
 
-        if (strtotime($inputs['start_date']) > $inputs['end_date']){
-            $event = new Event($inputs);
-            $event->cover = $url;
-            $event->user_id = Auth::id();
-
-            $event->save();
-
-            return redirect('/events');
-        }
-        else{
+        /*
+        if (strtotime($inputs['start_date']) < $inputs['end_date']){
             return back()->with('alert', 'End date has to be after the start date');
         }
+        */
+            
+        $event = new Event($inputs);
+        $event->cover = $url;
+        $event->user_id = Auth::id();
+        $event->save();
+
+        return redirect('/events');
     }
 
     public function show($id)

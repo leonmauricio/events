@@ -57,37 +57,37 @@
                                     <input type="email" class="form-control" name="email" placeholder="Email">
                                 </div>
                                 
-                                    @if (in_array('phone', $event->fields))
+                                    @if (isset($event->fields) && in_array('phone', $event->fields))
                                         <div class="form-group">
                                             <label>Phone Number</label>
                                             <input type="tel" class="form-control" name="phone" placeholder="Phone Number">
                                         </div>
                                     @endif
-                                    @if (in_array('address', $event->fields))
+                                    @if (isset($event->fields) && in_array('address', $event->fields))
                                         <div class="form-group">
                                             <label>Address</label>
                                             <input type="text" class="form-control" name="address" placeholder="Address">
                                         </div>
                                     @endif
-                                    @if (in_array('city', $event->fields))
+                                    @if (isset($event->fields) && in_array('city', $event->fields))
                                         <div class="form-group">
                                             <label>City</label>
                                             <input type="text" class="form-control" name="city" placeholder="City">
                                         </div>
                                     @endif
-                                    @if (in_array('country', $event->fields))
+                                    @if (isset($event->fields) && in_array('country', $event->fields))
                                         <div class="form-group">
                                             <label>Country</label>
                                             <input type="text" class="form-control" name="country" placeholder="Country">
                                         </div>
                                     @endif
-                                    @if (in_array('identification', $event->fields))
+                                    @if (isset($event->fields) && in_array('identification', $event->fields))
                                         <div class="form-group">
                                             <label>Identification Type and Number</label>
                                             <input type="text" class="form-control" name="identification" placeholder="Identification Type and Number">
                                         </div>
                                     @endif
-                                    @if (in_array('birth', $event->fields))
+                                    @if (isset($event->fields) && in_array('birth', $event->fields))
                                         <div class="form-group">
                                             <label>Date of Birth</label>
                                             <div class='input-group date datetimepicker'>
