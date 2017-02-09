@@ -27,7 +27,7 @@
                         </div>
                         <div class="form-group">
                             <label>Event Description</label>
-                            <textarea class="form-control" name="desc" placeholder="Event name"> {{ old('desc') }} </textarea>
+                            <textarea class="form-control" name="desc" placeholder="Event name">{{ old('desc') }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Capacity</label>
