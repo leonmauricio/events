@@ -38,8 +38,6 @@ class EventController extends Controller
     public function store(Request $request)
     {
 
-        dd('test');
-
         $this->validate($request, [
             'cover' => 'required|between:0,1024|image',
             'name' => 'required',
