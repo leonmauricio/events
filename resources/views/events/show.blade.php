@@ -110,10 +110,13 @@
                         </h2>
                     @endif
                 @else
-                    <ul>
                     <a href="/export/{{ $event->id }}" class="btn btn-primary">
                         Download Guest List
                     </a>
+                    <a href="/mailer/{{ $event->id }}" class="btn btn-primary">
+                        Send Update Email to Guest List
+                    </a>
+                    <ul>
                         @foreach ($event->guests as $guest)
                         <div class="guest-list">
                             <li>

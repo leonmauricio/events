@@ -18,12 +18,12 @@ class CreateGuestsTable extends Migration
             $table->integer('event_id')->unsigned()->index();
             $table->string('name');
             $table->string('email');
-            $table->integer('phone');
-            $table->string('address');
-            $table->string('city');
-            $table->string('country');
-            $table->string('identification');
-            $table->date('birth');
+            $table->integer('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
+            $table->string('identification')->nullable();
+            $table->date('birth')->nullable();
             $table->boolean('assisted')->default(0);
             $table->boolean('unsubscribe')->default(0);
             $table->string('invitation_id');

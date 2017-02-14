@@ -29,3 +29,6 @@ Route::get('/subscribe/{invitation_id}', 'SubscribeController@update');
 Route::get('/export/{id}', 'ExportController@create');
 
 Route::get('/public/events', 'PublicEventsController@index');
+
+Route::get('/mailer/{id}', 'MailerController@index');
+Route::post('/mailer/{id}', 'MailerController@store');
