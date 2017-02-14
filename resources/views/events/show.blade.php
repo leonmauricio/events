@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="cover-img" style="background-image: url(/{{$event->cover}})"></div>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <img src="/{{ str_replace('public','storage',$event->cover) }}" class="img-responsive">
                     <h2>
                         {{ $event->name }}
                     </h2>
@@ -96,14 +96,6 @@
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
                                             </div>
-                                        </div>
-                                    @endif
-                                    
-                                    @if (Auth::user()->admin)
-                                        <div class="checkbox">
-                                            <label>
-                                                <input name="featured" type="checkbox" value="1">Feature this event
-                                            </label>
                                         </div>
                                     @endif
 

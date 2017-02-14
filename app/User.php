@@ -31,4 +31,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Event::class);
     }
+
+    public function isAdmin()
+    {
+        if ($this->admin == 1){
+            return true;
+        }
+        return false;
+    }
 }

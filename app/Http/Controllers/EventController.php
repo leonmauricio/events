@@ -39,7 +39,7 @@ class EventController extends Controller
     {
 
         $this->validate($request, [
-            'cover' => 'required|between:0,1024|image',
+            'cover' => 'required|dimensions:min_width=1600,height=340|between:0,1024|image',
             'name' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date'
@@ -51,13 +51,8 @@ class EventController extends Controller
         $inputs['end_date'] .= ':00';
 
         $url = $request->cover->store('public');
+        $url = str_replace('public','storage',$url);
 
-        /*
-        if (strtotime($inputs['start_date']) < $inputs['end_date']){
-            return back()->with('alert', 'End date has to be after the start date');
-        }
-        */
-            
         $event = new Event($inputs);
         $event->cover = $url;
         $event->user_id = Auth::id();

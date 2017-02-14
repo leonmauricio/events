@@ -20,9 +20,24 @@
                             <textarea class="form-control" name="desc">{{ $event->desc }}</textarea>
                         </div>
 
+                        @if (!Auth::guest() && Auth::user()->isAdmin())
+                            <div class="checkbox">
+                                <label>
+                                    <input name="featured" type="checkbox" value="1">Feature this event
+                                </label>
+                            </div>
+                        @endif
+                        
                         <div class="form-group">
                             <label>Capacity</label>
                             <input type="number" class="form-control" name="capacity" value="{{$event->capacity }}">
+                        </div>
+
+                        <div class="radio-inline">
+                            <label><input type="radio" name="public" value="1">Public Event</label>
+                        </div>
+                        <div class="radio-inline">
+                            <label><input type="radio" name="public" value="0">Private Event</label>
                         </div>
 
                         <div class="row">

@@ -20,7 +20,7 @@
                             <div class="event-list">
                                 <li>
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-10">
                                             <a href="/events/{{ $event->id }}" class="pull-left">
                                                 {{ $event->name }}
                                             </a>
@@ -34,8 +34,8 @@
                                                 </p>
                                             @endif
                                         </div>
-                                        <div class="col-md-6">
-                                            @if (!Auth::guest() && Auth::user()->id === $event->user_id || Auth::user()->admin)
+                                        <div class="col-md-2">
+                                            @if (!Auth::guest() && Auth::user()->id === $event->user_id || Auth::user()->isAdmin())
                                                 <a  href="/events/{{ $event->id }}/edit" class="btn btn-warning pull-right">
                                                     Edit Event
                                                 </a>

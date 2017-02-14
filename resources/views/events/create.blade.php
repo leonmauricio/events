@@ -30,6 +30,7 @@
                             <label>Event Description</label>
                             <textarea class="form-control" name="desc" placeholder="Event name">{{ old('desc') }}</textarea>
                         </div>
+
                         @if (Auth::user()->admin)
                             <div class="checkbox">
                                 <label>
@@ -49,16 +50,11 @@
                         <div class="radio-inline">
                             <label><input type="radio" name="public" value="0">Private Event</label>
                         </div>
+                        
                         <div class="form-group">
                             <label>Event Cover</label>
                             <input type="file" class="form-control" name="cover">
                         </div>
-
-                        @if (session('alert'))
-                            <div class="alert alert-danger">
-                                {{ session('alert') }}
-                            </div>
-                        @endif
 
                         <div class="row">
                             <div class="col-md-6">
