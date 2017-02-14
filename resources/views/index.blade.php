@@ -5,22 +5,16 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Events</div>
 
                 <div class="panel-body">
-                    @if (!Auth::guest())
-                        <a href="/events/create" class="btn btn-primary">
-                            Create an event!
-                        </a>
-                        <hr>
-                    @endif
-                    Here are all the events!
+                    <h3>Featured Events</h3>
+
                     <ul>
                         @foreach ($events as $event)
                             <div class="event-list">
                                 <li>
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <a href="/events/{{ $event->id }}" class="pull-left">
                                                 {{ $event->name }}
                                             </a>
@@ -35,7 +29,7 @@
                                             @endif
                                         </div>
                                         <div class="col-md-6">
-                                            @if (!Auth::guest() && Auth::user()->id === $event->user_id || Auth::user()->admin)
+                                            @if (!Auth::guest() && Auth::user()->id === $event->user_id || !Auth::guest() && Auth::user()->admin === 1)
                                                 <a  href="/events/{{ $event->id }}/edit" class="btn btn-warning pull-right">
                                                     Edit Event
                                                 </a>
@@ -46,6 +40,8 @@
                             </div>
                         @endforeach
                     </ul>
+
+                    <a href="/public/events">See all the Events</a>
                 </div>
             </div>
         </div>

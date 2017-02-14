@@ -24,6 +24,7 @@ class CreateEventsTable extends Migration
             $table->dateTime('end_date');
             $table->text('fields')->nullable();
             $table->string('cover')->nullable();
+            $table->boolean('featured')->default(0);
             $table->timestamps();
         });
     }

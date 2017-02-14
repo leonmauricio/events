@@ -2,10 +2,6 @@
 
 @section('content')
 
-<h1>
-    TEST
-</h1>
-
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -34,6 +30,14 @@
                             <label>Event Description</label>
                             <textarea class="form-control" name="desc" placeholder="Event name">{{ old('desc') }}</textarea>
                         </div>
+                        @if (Auth::user()->admin)
+                            <div class="checkbox">
+                                <label>
+                                    <input name="featured" type="checkbox" value="1">Feature this event
+                                </label>
+                            </div>
+                        @endif
+
                         <div class="form-group">
                             <label>Capacity</label>
                             <input type="number" class="form-control" name="capacity" placeholder="Number of available invitations" value="{{ old('capacity') }}">

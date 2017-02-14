@@ -98,6 +98,14 @@
                                             </div>
                                         </div>
                                     @endif
+                                    
+                                    @if (Auth::user()->admin)
+                                        <div class="checkbox">
+                                            <label>
+                                                <input name="featured" type="checkbox" value="1">Feature this event
+                                            </label>
+                                        </div>
+                                    @endif
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Submit</button>
