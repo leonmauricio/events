@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mailer extends Model
 {
-    protected $table = 'mails';
+    protected $table = 'mailer';
 
     protected $fillable = ['message'];
 }

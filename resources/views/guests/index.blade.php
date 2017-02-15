@@ -73,7 +73,7 @@
             </div>
 
             <div class="links">
-                <a href="/events">Back to the Events</a>
+                <a href="/public/events">Back to the Events</a>
             </div>
         </div>
     </body>

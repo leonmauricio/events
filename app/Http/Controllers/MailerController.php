@@ -26,14 +26,26 @@ class MailerController extends Controller
 	    	$mail->message = $request->input('message');
 	    	$mail->user_mail = $event->user->email;
 	    	$mail->guest_mail = $guest->email;
+	    	$mail->guest_name = $guest->name;
+	    	$mail->event_name = $event->name;
 	    	$mail->save();
     	}
 
-    	/*
-    	Mail::send('emails.update', ['guest' => $mail->guest_mail], function ($m) use ($guest) {
-            $m->from('mauricio@nicolabs.com.ar', 'Laravel Events');
-            $m->to($guest->email, $guest->name)->subject('You are now invited to the event ' . $event->name . '!');
-        });
-        */
+    	return redirect('/events');
+    }
+
+    public function send()
+    {
+    	$mails = Mailer::where('sent', 0)->take(2)->get();
+    	
+    	foreach ($mails as $mail) {
+    		Mail::send('emails.update', ['mail' => $mail], function ($m) use ($mail) {
+            	$m->from($_ENV['MAIL_USERNAME'], 'Laravel Events');
+            	$m->to($mail->guest_mail, $mail->guest_name)->subject($mail->event_name . ' Update');
+        	});
+        	$mail->sent = 1;
+        	$mail->save();
+        	echo "Mail " . $mail->id . " Sent <br>";
+    	}
     }
 }

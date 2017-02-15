@@ -32,3 +32,7 @@ Route::get('/public/events', 'PublicEventsController@index');
 
 Route::get('/mailer/{id}', 'MailerController@index');
 Route::post('/mailer/{id}', 'MailerController@store');
+
+Route::get('/sendmail', 'MailerController@send');
+
+
