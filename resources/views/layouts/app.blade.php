@@ -108,7 +108,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqJYrTN2ffw9hO9pvZjKo4dwD6ugOe_yQ"></script>
     
     <script type="text/javascript">
-        var address = "{{ $address }}";
+        var address = "{{ isset($address) ? $address : '' }}";
     </script>
 
     <script src="/js/app.js"></script>
