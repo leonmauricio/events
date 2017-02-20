@@ -30,6 +30,7 @@
                     <p>
                         {{ $event->start_date }}-{{ $event->end_date }}
                     </p>
+                    <div id="googleMap" style="width:100%;height:400px;"></div>
                 </div>
                 @if (Auth::guest() or Auth::user()->id !== $event->user_id)
                     <hr>

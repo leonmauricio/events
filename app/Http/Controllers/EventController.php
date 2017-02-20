@@ -32,7 +32,11 @@ class EventController extends Controller
 
     public function create()
     {
-        return view('events.create');
+        $json = file_get_contents('http://country.io/names.json');
+        $country_list = json_decode($json, TRUE);
+        asort($country_list);
+
+        return view('events.create', compact('country_list'));
     }
 
     public function store(Request $request)
@@ -67,7 +71,8 @@ class EventController extends Controller
         $event->load('user');
 
         $hasCapacity = $event->guests->count() < $event->capacity;
-        return view('events.show', compact('event', 'hasCapacity'));
+        $address = $event->address . ', ' . $event->city . ', ' . $event->country;
+        return view('events.show', compact('event', 'hasCapacity','address'));
     }
 
     public function edit($id)
@@ -76,7 +81,12 @@ class EventController extends Controller
         if (Auth::user()->id !== $event->user_id){
             return redirect('/events');
         }
-        return view('events.edit', compact('event'));
+
+        $json = file_get_contents('http://country.io/names.json');
+        $country_list = json_decode($json, TRUE);
+        asort($country_list);
+
+        return view('events.edit', compact('event','country_list'));
     }
 
     public function update(Request $request, $id)

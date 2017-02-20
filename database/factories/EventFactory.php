@@ -23,5 +23,9 @@ $factory->define(App\Event::class, function (Faker\Generator $faker) {
         'public' => mt_rand(0,1),
         'start_date' => '2017-02-05 15:00:00',
         'end_date' => '2017-02-05 15:01:00',
+        'address' => $faker->address,
+        'city' => $faker->city,
+        'country' => str_random(10),
+
     ];
 });

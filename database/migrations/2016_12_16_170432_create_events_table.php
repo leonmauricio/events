@@ -22,6 +22,9 @@ class CreateEventsTable extends Migration
             $table->boolean('public')->default(0);
             $table->dateTime('start_date');
             $table->dateTime('end_date');
+            $table->string('address');
+            $table->string('city');
+            $table->string('country');
             $table->text('fields')->nullable();
             $table->string('cover')->nullable();
             $table->boolean('featured')->default(0);

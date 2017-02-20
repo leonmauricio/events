@@ -51,7 +51,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="public/events">DISCOVER EVENTS</a>
+                            <a href="/public/events">DISCOVER EVENTS</a>
                         </li>
                         <!-- Authentication Links -->
                         @if (Auth::guest())
@@ -105,6 +105,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment-with-locales.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.45/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqJYrTN2ffw9hO9pvZjKo4dwD6ugOe_yQ"></script>
+    
+    <script type="text/javascript">
+        var address = "{{ $address }}";
+    </script>
+
     <script src="/js/app.js"></script>
 </body>
 </html>

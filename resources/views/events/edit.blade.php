@@ -40,6 +40,25 @@
                             <label><input type="radio" name="public" value="0">Private Event</label>
                         </div>
 
+                        <div class="form-group">
+                            <label>Country</label>
+                            <select name="country" class="form-control">
+                                @foreach ($country_list as $code => $country)
+                                    <option value="{{ $code }}">{{ $country }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" class="form-control" name="city" placeholder="City" value="{{ $event->city }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" class="form-control" name="address" placeholder="Address" value="{{ $event->address }}">
+                        </div>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -75,32 +94,32 @@
                             </label>
                             <div class="checkbox">
                                 <label>
-                                    <input @if (in_array('phone', $event->fields)) checked @endif name="fields[]" type="checkbox" value="phone">Phone Number
+                                    <input @if (isset($event->fields) && in_array('phone', $event->fields)) checked @endif name="fields[]" type="checkbox" value="phone">Phone Number
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input @if (in_array('address', $event->fields)) checked @endif name="fields[]" type="checkbox" value="address">Address
+                                    <input @if (isset($event->fields) && in_array('address', $event->fields)) checked @endif name="fields[]" type="checkbox" value="address">Address
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input @if (in_array('city', $event->fields)) checked @endif name="fields[]" type="checkbox" value="city">City
+                                    <input @if (isset($event->fields) && in_array('city', $event->fields)) checked @endif name="fields[]" type="checkbox" value="city">City
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input @if (in_array('country', $event->fields)) checked @endif name="fields[]" type="checkbox" value="country">Country
+                                    <input @if (isset($event->fields) && in_array('country', $event->fields)) checked @endif name="fields[]" type="checkbox" value="country">Country
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input @if (in_array('identification', $event->fields)) checked @endif name="fields[]" type="checkbox" value="identification">Identification Type and Number
+                                    <input @if (isset($event->fields) && in_array('identification', $event->fields)) checked @endif name="fields[]" type="checkbox" value="identification">Identification Type and Number
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input @if (in_array('birth', $event->fields)) checked @endif name="fields[]" type="checkbox" value="birth">Birthday
+                                    <input @if (isset($event->fields) && in_array('birth', $event->fields)) checked @endif name="fields[]" type="checkbox" value="birth">Birthday
                                 </label>
                             </div>
                         </div>

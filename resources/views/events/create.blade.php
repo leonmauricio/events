@@ -56,6 +56,25 @@
                             <input type="file" class="form-control" name="cover">
                         </div>
 
+                        <div class="form-group">
+                            <label>Country</label>
+                            <select name="country" class="form-control">
+                                @foreach ($country_list as $code => $country)
+                                    <option value="{{ $code }}">{{ $country }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" class="form-control" name="city" placeholder="City" value="{{ old('city') }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" class="form-control" name="address" placeholder="Address" value="{{ old('address') }}">
+                        </div>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -84,6 +103,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label>
                                 Optional Requirements
