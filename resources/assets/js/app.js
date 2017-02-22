@@ -1,8 +1,9 @@
 $(function () {
+
     $('.datetimepicker').datetimepicker({
-    	sideBySide: true,
-    	useCurrent: false,
-    	format: 'YYYY-MM-DD HH:mm'
+        sideBySide: true,
+        useCurrent: false,
+        format: 'YYYY-MM-DD HH:mm'
     });
 
     // Render map

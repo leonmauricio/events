@@ -27,6 +27,7 @@ class CreateEventsTable extends Migration
             $table->string('country');
             $table->text('fields')->nullable();
             $table->string('cover')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->boolean('featured')->default(0);
             $table->timestamps();
         });

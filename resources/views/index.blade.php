@@ -50,7 +50,7 @@
             @foreach ($events as $event)
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="thumbnail"></div>
+                        <div class="thumbnail" style="background-image: url('{{ $event->thumbnail }}')"></div>
                         <div class="card-block">
                             <h5>
                                 {{ $event->start_date }} - {{ $event->end_date }}

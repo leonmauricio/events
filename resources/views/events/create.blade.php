@@ -57,10 +57,16 @@
                         </div>
 
                         <div class="form-group">
+                            <label>Event Thumbnail</label>
+                            <input type="file" class="form-control" name="thumbnail">
+                            <span class="restriction">480 x 480 pixels</span>
+                        </div>
+
+                        <div class="form-group">
                             <label>Country</label>
                             <select name="country" class="form-control">
                                 @foreach ($country_list as $code => $country)
-                                    <option value="{{ $code }}">{{ $country }}</option>
+                                    <option value="{{ $code }}" @if ($code == $ip_country) selected="selected" @endif>{{ $country }}</option>
                                 @endforeach
                             </select>
                         </div>

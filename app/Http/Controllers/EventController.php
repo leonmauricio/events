@@ -8,6 +8,8 @@ use Auth;
 
 class EventController extends Controller
 {
+    protected $get_country = '';
+
     public function __construct()
     {
          $this->middleware('auth')->except(['show']);
@@ -18,8 +20,7 @@ class EventController extends Controller
 
         if (Auth::user()->admin){
             $events = Event::with('guests', 'user')->get();
-        }
-        else if (!Auth::guest()){
+        } else if (!Auth::guest()){
             $events = Auth::user()->event;
         }
 
@@ -27,8 +28,7 @@ class EventController extends Controller
             $event->guestQuantity = $event->guests->count();
             if ($event->guestQuantity < $event->capacity) {
                 $event->soldOut = false;
-            }
-            else {
+            } else {
                 $event->soldOut = true;
             }
         }
@@ -42,7 +42,12 @@ class EventController extends Controller
         $country_list = json_decode($json, TRUE);
         asort($country_list);
 
-        return view('events.create', compact('country_list'));
+        $find_ip = file_get_contents('https://ipinfo.io');
+        $ip_country = json_decode($find_ip, TRUE);
+        dd($ip_country);
+        $ip_country = $ip_country['country'];
+
+        return view('events.create', compact('country_list','ip_country'));
     }
 
     public function store(Request $request)
@@ -50,6 +55,7 @@ class EventController extends Controller
 
         $this->validate($request, [
             'cover' => 'required|dimensions:min_width=1600,height=340|between:0,1024|image',
+            'thumbnail' => 'required|dimensions:width=480,height=480|between:0,1024|image',
             'name' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date'
@@ -60,11 +66,15 @@ class EventController extends Controller
         $inputs['start_date'] .= ':00';
         $inputs['end_date'] .= ':00';
 
-        $url = $request->cover->store('public');
-        $url = str_replace('public','storage',$url);
+        $cover_url = $request->cover->store('public');
+        $cover_url = str_replace('public','storage',$cover_url);
+
+        $thumb_url = $request->thumbnail->store('public');
+        $thumb_url = str_replace('public','storage',$thumb_url);
 
         $event = new Event($inputs);
-        $event->cover = $url;
+        $event->cover = $cover_url;
+        $event->thumbnail = $thumb_url;
         $event->user_id = Auth::id();
         $event->save();
 
@@ -97,6 +107,13 @@ class EventController extends Controller
 
     public function update(Request $request, $id)
     {
+
+        $this->validate($request, [
+            'name' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date'
+        ]);
+
         $event = Event::with('user')->find($id);
         if (Auth::user()->id !== $event->user_id){
             return redirect('/events');
@@ -110,6 +127,8 @@ class EventController extends Controller
         } else {
             return back()->with('alert', 'End date has to be after the start date');
         }
+
+        return view('events.show', ['event' => Event::findOrFail($id)]);
 
         return view('events.show', ['event' => Event::findOrFail($id)]);
     }

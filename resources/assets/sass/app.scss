@@ -119,7 +119,7 @@ ul{
 .thumbnail{
 	width: 240px;
 	height: 240px;
-	background-image: url('https://www.showclix.com/marketing/assets/i/buyer-homepage/featured-events/icecastles.jpg');
+	background-size: contain;
 	margin:0;
 }
 
@@ -160,4 +160,8 @@ ul{
 		color: #FFF;
 		font-weight: bold;
 	}
+}
+
+.restriction{
+	color:#808182;
 }

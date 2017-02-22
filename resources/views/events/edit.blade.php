@@ -11,6 +11,17 @@
                     <form method="POST" action="/events/{{ $event->id }}">
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         <div class="form-group">
                             <label>Event name</label>
                             <input type="text" class="form-control" name="name" value="{{ $event->name }}">
@@ -44,7 +55,7 @@
                             <label>Country</label>
                             <select name="country" class="form-control">
                                 @foreach ($country_list as $code => $country)
-                                    <option value="{{ $code }}">{{ $country }}</option>
+                                    <option value="{{ $code }}" @if ($code == $event->country) selected="selected" @endif >{{ $country }}</option>
                                 @endforeach
                             </select>
                         </div>

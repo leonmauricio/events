@@ -21,6 +21,7 @@ $factory->define(App\Event::class, function (Faker\Generator $faker) {
         'desc' => str_random(20),
         'capacity' => mt_rand(10,50),
         'public' => mt_rand(0,1),
+        'featured' => mt_rand(0,1),
         'start_date' => '2017-02-05 15:00:00',
         'end_date' => '2017-02-05 15:01:00',
         'address' => $faker->address,
