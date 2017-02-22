@@ -84,7 +84,7 @@ class EventController extends Controller
     public function edit($id)
     {
         $event = Event::with('user')->find($id);
-        if (Auth::user()->id !== $event->user_id){
+        if (Auth::user()->id !== $event->user_id && !Auth::user()->admin){
             return redirect('/events');
         }
 
