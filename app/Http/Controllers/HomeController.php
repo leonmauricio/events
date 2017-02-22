@@ -13,6 +13,7 @@ class HomeController extends Controller
         $events = Event::where('featured', 1)->get();
         foreach ($events as $event) {
             $event->guestQuantity = $event->guests->count();
+            $event->fullAddress = $event->city . ', ' . $event->country;
             if ($event->guestQuantity < $event->capacity) {
                 $event->soldOut = false;
             }

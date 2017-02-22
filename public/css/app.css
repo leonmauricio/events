@@ -2,7 +2,17 @@ ul {
   list-style: none;
 }
 
-.event-list li, .guest-list li {
+/*
+.container{
+	width:100%
+}
+
+.row{
+	width: 1170px;
+	margin: 0 auto;
+}
+*/
+.guest-list li {
   display: block;
   vertical-align: middle;
   padding: 7px 0px;
@@ -33,6 +43,133 @@ ul {
   height: 340px;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+.navbar a {
+  color: #FFF;
+  font-weight: bold;
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+
+.jumbo {
+  background-image: url("/img/homepage-hero-1.jpg");
+  background-position: center;
+}
+
+.jumbo .tint {
+  background: rgba(8, 31, 55, 0.8);
+}
+
+.jumbo .title {
+  padding: 90px 100px 110px;
+}
+
+.jumbo .title h1 {
+  color: white;
+  font-weight: bold;
+  font-size: 60px;
+}
+
+.jumbo .title p {
+  color: #C3C7CB;
+  padding-bottom: 20px;
+}
+
+.jumbo .title .btn {
+  padding: 10px 25px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.search {
+  background-color: #DADADA;
+  padding: 20px 0 25px;
+}
+
+.search .form-control {
+  height: 52px;
+  margin-left: 40px;
+  width: 95%;
+}
+
+.search .btn {
+  color: #FFF;
+  padding: 14px 15px;
+  background: #1E7AD1;
+}
+
+.search-login {
+  padding: 10px;
+  font-weight: bold;
+}
+
+.upcoming {
+  padding: 35px 0 20px;
+  color: #A3A1A1;
+  font-size: 16px;
+}
+
+.thumbnail {
+  width: 240px;
+  height: 240px;
+  background-image: url("https://www.showclix.com/marketing/assets/i/buyer-homepage/featured-events/icecastles.jpg");
+  margin: 0;
+}
+
+.card-block {
+  border-bottom: 2px solid #EBEBEB;
+  font-size: 12px;
+  margin-bottom: 30px;
+}
+
+.card-block h5 {
+  margin: 12px 0 5px;
+  font-size: 12px;
+}
+
+.card-block .card-title {
+  margin: 0px;
+  font-size: 18px;
+  margin-bottom: 7px;
+}
+
+.card-block .card-title a {
+  color: #000;
+}
+
+.last-call {
+  font-size: 40px;
+  font-weight: bold;
+  padding: 50px 0 150px;
+}
+
+.get-started {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.footer {
+  background-color: #081F37;
+  padding: 50px;
+}
+
+.footer a {
+  color: #FFF;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=app.css.map */
