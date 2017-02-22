@@ -15,18 +15,24 @@ class EventController extends Controller
     
     public function index()
     {
-        if (!Auth::guest()){
+
+        if (Auth::user()->admin){
+            $events = Event::with('guests', 'user')->get();
+        }
+        else if (!Auth::guest()){
             $events = Auth::user()->event;
-            foreach ($events as $event) {
-                $event->guestQuantity = $event->guests->count();
-                if ($event->guestQuantity < $event->capacity) {
-                    $event->soldOut = false;
-                }
-                else {
-                    $event->soldOut = true;
-                }
+        }
+
+        foreach ($events as $event) {
+            $event->guestQuantity = $event->guests->count();
+            if ($event->guestQuantity < $event->capacity) {
+                $event->soldOut = false;
+            }
+            else {
+                $event->soldOut = true;
             }
         }
+
         return view('events.index', compact('events'));
     }
 
