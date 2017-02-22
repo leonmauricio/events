@@ -44,7 +44,6 @@ class EventController extends Controller
 
         $find_ip = file_get_contents('https://ipinfo.io');
         $ip_country = json_decode($find_ip, TRUE);
-        dd($ip_country);
         $ip_country = $ip_country['country'];
 
         return view('events.create', compact('country_list','ip_country'));
