@@ -121,12 +121,6 @@ class EventController extends Controller
         $inputs['start_date'] .= ':00';
         $inputs['end_date'] .= ':00';
 
-        if (strtotime($inputs['start_date']) > $inputs['end_date']){
-            $event->update($inputs);
-        } else {
-            return back()->with('alert', 'End date has to be after the start date');
-        }
-
         return view('events.show', ['event' => Event::findOrFail($id)]);
 
         return view('events.show', ['event' => Event::findOrFail($id)]);

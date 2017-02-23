@@ -53,7 +53,7 @@
                         <div class="thumbnail" style="background-image: url('{{ $event->thumbnail }}')"></div>
                         <div class="card-block">
                             <h5>
-                                {{ $event->start_date }} - {{ $event->end_date }}
+                                {{ $event->fullDate }}
                             </h5>
                             <h3 class="card-title">
                                 <a href="/events/{{ $event->id }}">

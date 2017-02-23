@@ -150,6 +150,10 @@ ul {
   color: #000;
 }
 
+.card-block span {
+  margin-bottom: 20px;
+}
+
 .last-call {
   font-size: 40px;
   font-weight: bold;
