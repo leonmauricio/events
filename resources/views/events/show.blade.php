@@ -28,7 +28,7 @@
                         {{ $event->desc }}
                     </p>
                     <p>
-                        {{ $event->start_date }}-{{ $event->end_date }}
+                        {{ $event->fullDate }}
                     </p>
                     <div id="googleMap" style="width:100%;height:400px;"></div>
                 </div>

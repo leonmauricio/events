@@ -85,8 +85,16 @@ class EventController extends Controller
         $event = Event::with('guests', 'user')->findOrFail($id);
         $event->load('user');
 
+        $event->fullDate = strftime('%A %d %B, %R', strtotime($event->start_date));
+        if (date('Y-m-d', strtotime($event->start_date)) === date('Y-m-d', strtotime($event->end_date))){
+            $event->fullDate .= ' - ' . strftime('%R', strtotime($event->end_date));
+        } else {
+            $event->fullDate .= ' - ' . strftime('%A %d %B, %R', strtotime($event->end_date));
+        };
+
         $hasCapacity = $event->guests->count() < $event->capacity;
         $address = $event->address . ', ' . $event->city . ', ' . $event->country;
+        
         return view('events.show', compact('event', 'hasCapacity','address'));
     }
 
