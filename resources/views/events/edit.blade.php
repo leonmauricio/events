@@ -52,7 +52,9 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="cover-edit" style="background-image: url(/{{$event->cover}})"></div>
+                            @if (isset($event->cover))
+                                <div class="cover-edit" style="background-image: url(/{{$event->cover}})"></div>
+                            @endif
                             <label>Event Cover</label>
                             <input type="file" class="form-control" name="cover">
                             <span class="restriction">1600 x 340 pixels</span>
@@ -61,7 +63,9 @@
                         <div class="form-group">
                             <div class="cover-edit" style="background-image: url(/{{$event->thumbnail}})"></div>
                             <label>Event Thumbnail</label>
-                            <input type="file" class="form-control" name="thumbnail">
+                            @if (isset($event->cover))
+                                <input type="file" class="form-control" name="thumbnail">
+                            @endif
                             <span class="restriction">480 x 480 pixels</span>
                         </div>
 
