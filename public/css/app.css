@@ -130,7 +130,6 @@ ul {
 }
 
 .card-block {
-  border-bottom: 2px solid #EBEBEB;
   font-size: 12px;
   margin-bottom: 30px;
 }
@@ -178,6 +177,14 @@ ul {
 
 .restriction {
   color: #808182;
+}
+
+.cover-edit {
+  width: 100%;
+  height: 340px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /*# sourceMappingURL=app.css.map */

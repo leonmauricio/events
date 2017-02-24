@@ -54,6 +54,7 @@
                         <div class="form-group">
                             <label>Event Cover</label>
                             <input type="file" class="form-control" name="cover">
+                            <span class="restriction">1600 x 340 pixels</span>
                         </div>
 
                         <div class="form-group">
@@ -63,22 +64,22 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Country</label>
-                            <select name="country" class="form-control">
-                                @foreach ($country_list as $code => $country)
-                                    <option value="{{ $code }}" @if ($code == $ip_country) selected="selected" @endif>{{ $country }}</option>
-                                @endforeach
-                            </select>
+                            <label>Address</label>
+                            <input type="text" class="form-control" name="address" placeholder="Address" value="{{ old('address') }}">
                         </div>
-                        
+
                         <div class="form-group">
                             <label>City</label>
                             <input type="text" class="form-control" name="city" placeholder="City" value="{{ old('city') }}">
                         </div>
 
                         <div class="form-group">
-                            <label>Address</label>
-                            <input type="text" class="form-control" name="address" placeholder="Address" value="{{ old('address') }}">
+                            <label>Country</label>
+                            <select name="country" class="form-control">
+                                @foreach ($country_list as $code => $country)
+                                    <option value="{{ $code }}" @if ($code == $ip_country) selected="selected" @endif>{{ $country }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="row">

@@ -8,7 +8,7 @@
                 <div class="panel-heading">Events</div>
 
                 <div class="panel-body">
-                    <form method="POST" action="/events/{{ $event->id }}">
+                    <form method="POST" action="/events/{{ $event->id }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
 
@@ -45,10 +45,34 @@
                         </div>
 
                         <div class="radio-inline">
-                            <label><input type="radio" name="public" value="1">Public Event</label>
+                            <label><input type="radio" name="public" value="1" @if ($event->public == 1) checked="checked" @endif>Public Event</label>
                         </div>
                         <div class="radio-inline">
-                            <label><input type="radio" name="public" value="0">Private Event</label>
+                            <label><input type="radio" name="public" value="0" @if ($event->public == 0) checked="checked" @endif>Private Event</label>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="cover-edit" style="background-image: url(/{{$event->cover}})"></div>
+                            <label>Event Cover</label>
+                            <input type="file" class="form-control" name="cover">
+                            <span class="restriction">1600 x 340 pixels</span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="cover-edit" style="background-image: url(/{{$event->thumbnail}})"></div>
+                            <label>Event Thumbnail</label>
+                            <input type="file" class="form-control" name="thumbnail">
+                            <span class="restriction">480 x 480 pixels</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" class="form-control" name="address" placeholder="Address" value="{{ $event->address }}">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" class="form-control" name="city" placeholder="City" value="{{ $event->city }}">
                         </div>
 
                         <div class="form-group">
@@ -58,16 +82,6 @@
                                     <option value="{{ $code }}" @if ($code == $event->country) selected="selected" @endif >{{ $country }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>City</label>
-                            <input type="text" class="form-control" name="city" placeholder="City" value="{{ $event->city }}">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Address</label>
-                            <input type="text" class="form-control" name="address" placeholder="Address" value="{{ $event->address }}">
                         </div>
 
                         <div class="row">

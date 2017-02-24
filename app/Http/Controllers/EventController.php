@@ -118,7 +118,9 @@ class EventController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date'
+            'end_date' => 'required|date|after:start_date',
+            'cover' => 'required|dimensions:min_width=1600,height=340|between:0,1024|image',
+            'thumbnail' => 'required|dimensions:width=480,height=480|between:0,1024|image',
         ]);
 
         $event = Event::with('user')->find($id);
@@ -128,6 +130,16 @@ class EventController extends Controller
         $inputs = $request->all();
         $inputs['start_date'] .= ':00';
         $inputs['end_date'] .= ':00';
+
+        $cover_url = $request->cover->store('public');
+        $cover_url = str_replace('public','storage',$cover_url);
+
+        $thumb_url = $request->thumbnail->store('public');
+        $thumb_url = str_replace('public','storage',$thumb_url);
+
+        $event->cover = $cover_url;
+        $event->thumbnail = $thumb_url;
+        $event->update($inputs);
 
         return view('events.show', ['event' => Event::findOrFail($id)]);
 
